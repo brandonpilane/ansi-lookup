@@ -2,26 +2,37 @@
 # ansi-lookup.sh
 # A CLI reference for ANSI escape sequences (colors & text attributes)
 
-RESET="\033[0m"
+RESET=$'\033[0m'
+BOLD=$'\033[1m'
+UNDER=$'\033[4m'
+DIM=$'\033[2m'
+ITALIC=$'\033[3m'
+GREEN=$'\033[32m'
+GREEN_BG=$'\033[42m'
+RED=$'\033[31m'
+RED_BG=$'\033[41m'
+YELLOW=$'\033[33m'
+BLUE=$'\033[34m'
+MAGENTA=$'\033[35m'
+CYAN=$'\033[36m'
 
-# --- Functions ---
 show_help() {
-  cat <<EOF
+  echo -e "
 Usage: ansi-lookup.sh [options]
 
 Options:
-  -a    Show all (attributes, foreground, background, 256-colors)
-  -t    Show text attributes (bold, underline, etc.)
-  -f    Show foreground colors (16-color set)
-  -b    Show background colors (16-color set)
-  -x    Show 256-color foreground table
-  -h    Show this help
+  -a    Show all (${BOLD}text attributes${RESET}, ${GREEN}foreground${RESET}, ${GREEN_BG}background${RESET}, ${RED}2${YELLOW}5${GREEN}6${CYAN}-${BLUE}c${MAGENTA}o${RED}l${YELLOW}o${GREEN}r${CYAN}s${RESET}${RESET})
+  -t    Show text attributes (${BOLD}bold${RESET}, ${UNDER}underline${RESET}, ${ITALIC}italic${RESET}, etc.)
+  -f    Show ${GREEN}foreground colors${RESET} (16-color set)
+  -b    Show ${GREEN_BG}background colors${RESET} (16-color set)
+  -x    Show $(echo -e "${RED}2${YELLOW}5${GREEN}6${CYAN}-${BLUE}c${MAGENTA}o${RED}l${YELLOW}o${GREEN}r${CYAN}s${RESET}") foreground table
+  -h    Show this ${BOLD}help${RESET}
 
 Examples:
   ansi-lookup.sh -t
   ansi-lookup.sh -f -b
   ansi-lookup.sh -x
-EOF
+"
 }
 
 show_attrs() {
