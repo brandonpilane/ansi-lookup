@@ -49,15 +49,15 @@ show_attrs() {
   )
   echo -e "\nText attributes:"
   for code in "${!ATTRS[@]}"; do
-    printf "  %-15s: \\033[%sm → " "${ATTRS[$code]}" "$code"
+    printf "  %-15s: \\\033[%sm → " "${ATTRS[$code]}" "$code"
     echo -e "\033[${code}mExample${RESET}"
   done
-}
+} 
 
 show_fg() {
   echo -e "\nBasic 16 Foreground Colors:"
   for i in {30..37} {90..97}; do
-    printf "  FG %-3s: \\033[%sm → " "$i" "$i"
+    printf "  FG %-3s: \\\033[%sm → " "$i" "$i"
     echo -e "\033[${i}mSample${RESET}"
   done
 }
@@ -65,7 +65,7 @@ show_fg() {
 show_bg() {
   echo -e "\nBasic 16 Background Colors:"
   for i in {40..47} {100..107}; do
-    printf "  BG %-3s: \\033[%sm → " "$i" "$i"
+    printf "  BG %-3s: \\\033[%sm → " "$i" "$i"
     echo -e "\033[${i}mSample${RESET}"
   done
 }
@@ -73,7 +73,7 @@ show_bg() {
 show_256() {
   echo -e "\n256 Colors (foreground only):"
   for i in {0..255}; do
-    printf "%3s: \\033[38;5;%sm → \033[38;5;${i}mSample${RESET}\t" "$i" "$i"
+    printf "%3s: \\\033[38;5;%sm → \033[38;5;%smSample${RESET}\t" "$i" "$i" "$i"
     if (( (i + 1) % 4 == 0 )); then
       echo ""
     fi
